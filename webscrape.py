@@ -7,8 +7,9 @@ url = 'https://www.example.com/data'
 
 def download(url,filename):
     response = requests.get(url)
-    with open(filename, 'wb') as f:
-        f.write(response.content)
+    if response.status_code == 200:
+        with open(filename, 'wb') as f:
+            f.write(response.content)
 
 def parse_html(filename):
     with open(filename, 'r', encoding='utf-8') as f:
